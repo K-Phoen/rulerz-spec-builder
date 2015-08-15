@@ -1,0 +1,27 @@
+{
+    "name": "kphoen/rulerz-spec-builder",
+    "type": "library",
+    "license": "MIT",
+    "description": "Specification builder for RulerZ",
+    "keywords": ["specification", "rulerz", "builder"],
+    "authors": [
+        {
+            "name": "Kévin Gomez",
+            "email": "contact@kevingomez.fr"
+        }
+    ],
+    "autoload": {
+        "psr-4": { "RulerZ\\": "src/" }
+    },
+    "config": {
+        "bin-dir": "bin/"
+    },
+    "require": {
+        "php": ">=5.6",
+
+        "kphoen/rulerz": "dev-master"
+    },
+    "require-dev": {
+        "phpspec/phpspec": "~2.0"
+    }
+}

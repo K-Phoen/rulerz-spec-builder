@@ -2,68 +2,183 @@
 
 namespace RulerZ\Spec;
 
+/**
+ * Factory for Specification instances.
+ *
+ * Use this class to build specifications:
+ *
+ * ```php
+ * $spec = Expr::andX(
+ *     Expr::equals('gender', 'F'),
+ *     Expr::moreThan('points', 3000)
+ * );
+ * ```
+ *
+ * This is equivalent to `gender = "F" and points > 3000`
+ */
 class Expr
 {
+    /**
+     * Create a conjunction of specifications.
+     *
+     * @param Specification ...$specifications
+     *
+     * @return \RulerZ\Spec\Specification
+     */
     public static function andX(Specification ...$specifications)
     {
         return new AndX($specifications);
     }
 
+    /**
+     * Create a disjunction of specifications.
+     *
+     * @param Specification ...$specifications
+     *
+     * @return \RulerZ\Spec\Specification
+     */
     public static function orX(Specification ...$specifications)
     {
         return new OrX($specifications);
     }
 
+    /**
+     * Negate a specification.
+     *
+     * @param Specification $specification
+     *
+     * @return \RulerZ\Spec\Specification
+     */
     public static function not(Specification $specification)
     {
         return new Not($specification);
     }
 
+    /**
+     * Check that a value equals another value.
+     *
+     * @param $key
+     * @param $value
+     *
+     * @return Specification
+     */
     public static function equals($key, $value)
     {
-        return self::buildSpec($key, $value, '=');
+        return self::createSpec($key, $value, '=');
     }
 
+    /**
+     * Check that a value is not equal to another value.
+     *
+     * @param $key
+     * @param $value
+     *
+     * @return Specification
+     */
     public static function notEquals($key, $value)
     {
-        return self::buildSpec($key, $value, '!=');
+        return self::createSpec($key, $value, '!=');
     }
 
+    /**
+     * Check that a value strictly equals another value.
+     *
+     * @param $key
+     * @param $value
+     *
+     * @return Specification
+     */
     public static function is($key, $value)
     {
-        return self::buildSpec($key, $value, 'is');
+        return self::createSpec($key, $value, 'is');
     }
 
+    /**
+     * Check that a value is NOT strictly equal to another value.
+     *
+     * @param $key
+     * @param $value
+     *
+     * @return Specification
+     */
     public static function isNot($key, $value)
     {
         return self::not(self::is($key, $value));
     }
 
+    /**
+     * Check that a value is inferior to another value.
+     *
+     * @param $key
+     * @param $value
+     *
+     * @return Specification
+     */
     public static function lessThan($key, $value)
     {
-        return self::buildSpec($key, $value, '<');
+        return self::createSpec($key, $value, '<');
     }
 
+    /**
+     * Check that a value is inferior or equal to another value.
+     *
+     * @param $key
+     * @param $value
+     *
+     * @return Specification
+     */
     public static function lessThanEqual($key, $value)
     {
-        return self::buildSpec($key, $value, '<=');
+        return self::createSpec($key, $value, '<=');
     }
 
+    /**
+     * Check that a value is superior to another value.
+     *
+     * @param $key
+     * @param $value
+     *
+     * @return Specification
+     */
     public static function moreThan($key, $value)
     {
-        return self::buildSpec($key, $value, '>');
+        return self::createSpec($key, $value, '>');
     }
 
+    /**
+     * Check that a value is superior or equal to another value.
+     *
+     * @param $key
+     * @param $value
+     *
+     * @return Specification
+     */
     public static function moreThanEqual($key, $value)
     {
-        return self::buildSpec($key, $value, '>=');
+        return self::createSpec($key, $value, '>=');
     }
 
+    /**
+     * Check that a value is in a given list.
+     *
+     * @param $key
+     * @param $value
+     *
+     * @return Specification
+     */
     public static function in($key, $value)
     {
-        return self::buildSpec($key, $value, 'in');
+        return self::createSpec($key, $value, 'in');
     }
 
+    /**
+     * Check that a value is NOT in a given list.
+     *
+     * @param $key
+     * @param $value
+     *
+     * @return Specification
+     */
     public static function notIn($key, $value)
     {
         return self::not(self::in($key, $value));
@@ -76,7 +191,7 @@ class Expr
      *
      * @return Specification
      */
-    private static function buildSpec($key, $value, $operator)
+    private static function createSpec($key, $value, $operator)
     {
         return new GenericSpec(sprintf('%s %s %s', $key, $operator, self::formatValue($value)));
     }

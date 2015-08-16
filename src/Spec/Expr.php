@@ -203,6 +203,12 @@ class Expr
      */
     private static function formatValue($value)
     {
+        if (is_array($value)) {
+            $formattedValues = array_map('self::formatValue', $value);
+
+            return sprintf('[%s]', implode(', ', $formattedValues));
+        }
+
         if (empty($value)) {
             return '""';
         }

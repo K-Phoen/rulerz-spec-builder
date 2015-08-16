@@ -15,6 +15,23 @@ namespace RulerZ\Spec;
  * ```
  *
  * This is equivalent to `gender = "F" and points > 3000`
+ *
+ * Here is a more complex example:
+ *
+ * ```php
+ * $spec = Expr::orX(
+ *     Expr::andX(
+ *         Expr::equals('gender', 'F'),
+ *         Expr::moreThan('points', 3000)
+ *     ),
+ *     Expr::andX(
+ *         Expr::equals('gender', 'M'),
+ *         Expr::moreThan('points', 6000)
+ *     )
+ * );
+ * ```
+ *
+ * Which is equivalent to: `(gender = "F" and points > 3000) or (gender = "M" and points > 6000)`
  */
 class Expr
 {

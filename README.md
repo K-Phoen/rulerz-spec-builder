@@ -3,6 +3,13 @@ RulerZ Specification builder [![Build Status](https://travis-ci.org/K-Phoen/rule
 
 This library provides an object-oriented way to build Specifications for [RulerZ](https://github.com/K-Phoen/rulerz).
 
+Installation
+------------
+
+```
+composer require 'kphoen/rulerz-spec-builder'
+```
+
 Usage
 -----
 

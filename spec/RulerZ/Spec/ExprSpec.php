@@ -16,7 +16,7 @@ class ExprSpec extends ObjectBehavior
         $otherSpec->getParameters()->willReturn(['bar' => 'param b']);
 
         $conjunction = $this::andX($spec, $otherSpec);
-        $conjunction->getRule()->shouldReturn('a AND b');
+        $conjunction->getRule()->shouldReturn('(a) AND (b)');
         $conjunction->getParameters()->shouldReturn([
             'foo' => 'param a',
             'bar' => 'param b',
@@ -32,7 +32,7 @@ class ExprSpec extends ObjectBehavior
         $otherSpec->getParameters()->willReturn(['bar' => 'param b']);
 
         $disjunction = $this::orX($spec, $otherSpec);
-        $disjunction->getRule()->shouldReturn('a OR b');
+        $disjunction->getRule()->shouldReturn('(a) OR (b)');
         $disjunction->getParameters()->shouldReturn([
             'foo' => 'param a',
             'bar' => 'param b',

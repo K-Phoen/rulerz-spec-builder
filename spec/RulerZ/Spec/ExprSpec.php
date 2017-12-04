@@ -103,6 +103,11 @@ class ExprSpec extends ObjectBehavior
         $spec->getRule()->shouldReturn('column in [42, 24]');
     }
 
+    function it_can_build_a_like()
+    {
+        $spec = $this::like('column', 'test');
+        $spec->getRule()->shouldReturn('column like \'test\'');
+    }
 
     function it_can_build_an_inclusion_negation()
     {

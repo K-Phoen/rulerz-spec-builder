@@ -189,6 +189,19 @@ class Expr
     }
 
     /**
+     * Check that a value is like to another list.
+     *
+     * @param $key
+     * @param $value
+     *
+     * @return Specification
+     */
+    public static function like($key, $value)
+    {
+        return self::createSpec($key, $value, 'like');
+    }
+
+    /**
      * Check that a value is NOT in a given list.
      *
      * @param $key

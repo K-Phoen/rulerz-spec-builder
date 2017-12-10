@@ -189,6 +189,27 @@ class Expr
     }
 
     /**
+     * Calls an operator/a function.
+     *
+     * Example:
+     * ```php
+     * $spec = Expr::func('like', 'attribute', 'terms');
+     * ```
+     *
+     * @param string $function Function name.
+     * @param mixed ...$arguments
+     *
+     * @return Specification
+     */
+    public static function func($function, ...$arguments)
+    {
+        $argumentsList = implode(', ', array_map('self::formatValue', $arguments));
+        $rule = sprintf('%s(%s)', $function, $argumentsList);
+
+        return new GenericSpec($rule);
+    }
+
+    /**
      * Check that a value is NOT in a given list.
      *
      * @param $key

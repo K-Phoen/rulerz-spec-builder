@@ -103,10 +103,15 @@ class ExprSpec extends ObjectBehavior
         $spec->getRule()->shouldReturn('column in [42, 24]');
     }
 
-
     function it_can_build_an_inclusion_negation()
     {
         $spec = $this::notIn('column', [42, 24]);
         $spec->getRule()->shouldReturn('NOT (column in [42, 24])');
+    }
+
+    function it_can_build_a_function_call()
+    {
+        $spec = $this::func('like', 'column', 'value');
+        $spec->getRule()->shouldReturn("like('column', 'value')");
     }
 }

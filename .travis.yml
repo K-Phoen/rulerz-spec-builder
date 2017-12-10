@@ -16,10 +16,11 @@ matrix:
 
 before_install:
     - phpenv config-rm xdebug.ini || true
-    - composer self-update
 
 install:
+    - if [ "$TRAVIS_PHP_VERSION" = "7.1" ]; then composer require --dev --no-update kphoen/rusty dev-master; fi
     - composer install --optimize-autoloader --no-interaction
 
 script:
     - make tests
+    - if [ "$TRAVIS_PHP_VERSION" = "7.1" ]; then make rusty; fi

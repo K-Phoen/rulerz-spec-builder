@@ -20,7 +20,7 @@ class GenericSpec implements Specification
     /**
      * @inheritDoc
      */
-    public function getRule()
+    public function getRule() : string
     {
         return $this->rule;
     }
@@ -28,7 +28,7 @@ class GenericSpec implements Specification
     /**
      * @inheritDoc
      */
-    public function getParameters()
+    public function getParameters() : array
     {
         return $this->parameters;
     }

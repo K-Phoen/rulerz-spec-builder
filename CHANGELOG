@@ -2,6 +2,12 @@
 VERSION 1  FIRST STABLE RELEASE
 ===============================
 
+   Version 1.2 - Require PHP 7.0 and newer version of rulerz
+      17/09/2018 16:32  1.2.0  initial release
+         c6e15d6 Require at least PHP 7.0 and rulerz 0.19.3
+         8cad412 Add compatibility with last RulerZ release (#3)
+         3a9dd82 Update branch alias
+
    Version 1.1 - Introduce a "func" expression builder
       10/12/2017 22:28  1.1.0  initial release
          5ee4762 Fix release target
